@@ -1,0 +1,20 @@
+{
+  "url": "https://www.youtube.com/watch?v=W21yvhnjrOw",
+  "source": "youtube_description",
+  "raw_text": "00:00 | Spooky (Quinten 909 Extended Remix) - Dusty Springfield\n04:30 | Got 2 Be Loved - Soul Reductions\n10:15 | She Can't Love You (Purple Disco Machine Edit) - Purple Disco Machine, Chemise\n13:30 | Everybody Dance (Nu Disco Mix) - HO Vince\n18:00 | One True Light - Crazy P\n22:30 | Pump The Boogie - Mark Picchiotti\n27:00 | Show Me Love (Emmaculate Remix) - Robin S, Emmaculate\n31:30 | Sweet Melody - Stephane Deschezeaux\n35:30 | Mydonna (Alternate Cut) - Coeo\n40:30 | Beam Me Up (Jacques Renault Remix) - Midnight Magic\n44:30 | Make It Hot (Ray Mang's Warm Front Extension) - JKriv, The Disco Machine\n50:00 | Etranges Nuages (Yuksek Remix) - Bertrand Burgalat\n52:30 | Murder On The Dancefloor (Parky & Birchy Remix) - Sophie Ellis-Bextor",
+  "tracks": [
+    {"num": "1",  "timestamp": "00:00", "artist": "Dusty Springfield",          "title": "Spooky (Quinten 909 Extended Remix)",              "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "2",  "timestamp": "04:30", "artist": "Soul Reductions",             "title": "Got 2 Be Loved",                                   "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "3",  "timestamp": "10:15", "artist": "Purple Disco Machine, Chemise","title": "She Can't Love You (Purple Disco Machine Edit)",   "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "4",  "timestamp": "13:30", "artist": "HO Vince",                    "title": "Everybody Dance (Nu Disco Mix)",                    "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "5",  "timestamp": "18:00", "artist": "Crazy P",                     "title": "One True Light",                                   "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "6",  "timestamp": "22:30", "artist": "Mark Picchiotti",             "title": "Pump The Boogie",                                  "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "7",  "timestamp": "27:00", "artist": "Robin S, Emmaculate",         "title": "Show Me Love (Emmaculate Remix)",                   "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "8",  "timestamp": "31:30", "artist": "Stephane Deschezeaux",        "title": "Sweet Melody",                                     "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "9",  "timestamp": "35:30", "artist": "Coeo",                        "title": "Mydonna (Alternate Cut)",                          "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "10", "timestamp": "40:30", "artist": "Midnight Magic",              "title": "Beam Me Up (Jacques Renault Remix)",                "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "11", "timestamp": "44:30", "artist": "JKriv, The Disco Machine",    "title": "Make It Hot (Ray Mang's Warm Front Extension)",     "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "12", "timestamp": "50:00", "artist": "Bertrand Burgalat",           "title": "Etranges Nuages (Yuksek Remix)",                    "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "13", "timestamp": "52:30", "artist": "Sophie Ellis-Bextor",         "title": "Murder On The Dancefloor (Parky & Birchy Remix)",   "label": null, "date": null, "apple_music_id": null, "spotify_id": null}
+  ]
+}

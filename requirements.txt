@@ -1,0 +1,9 @@
+google-api-python-client
+beautifulsoup4
+requests
+playwright
+python-dotenv
+pytest
+vcrpy
+rapidfuzz
+httpx

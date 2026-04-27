@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "find-a-mix"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+[project.scripts]
+unmix = "find_a_mix.cli:main"

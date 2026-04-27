@@ -1,0 +1,26 @@
+{
+  "url": "https://www.youtube.com/watch?v=KKIQuNZvN4Q",
+  "source": "youtube_description",
+  "raw_text": "TRACKLIST :\n\n00:00 : Teddy Pendergrass, John Morales - Only You\n04:10 : Uptown Funk Empire - Boogie\n06:54 : Letta Mbulu - Kilimanjaro\n10:35 : ROOT SOUL - Spirit Of Love (Ft. Vanessa Freeman & Mike Patto)\n14:24 : DJ Boris - Body Burning \n17:58 : Incognito - Ain't It Time (Club Surreal Mix)\n22:29 : Azota - Soft Emotion\n26:43 : First Choice - Hold Your Horses \n30:27 : Unlimited Touch - In The Middle\n35:24 : Patti Labelle -  Music Is My Way Of Life\n39:55 : Sylvester - Can't Stop Dancing \n43:55 : Cerrone - Look for Love (The reflex revision)\n48:03 : T-Connection - At Midnight \n50:43 : Musique - Keep On Jumpin'\n53:20 : Pasteur Lappe - More Sekele Movement (Papa Ni Mama)\n56:52 : Dan Hartman - Relight My Fire (Ft. Loleatta Holoway)\n1:01:45 : Macho - I'm A Man (Long Mix)\n1:05:19 : Patrick Hernandez - Disco Queen \n1:08:44 : Destination - Move On Up",
+  "tracks": [
+    {"num": "1",  "timestamp": "00:00",   "artist": "Teddy Pendergrass, John Morales", "title": "Only You",                                               "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "2",  "timestamp": "04:10",   "artist": "Uptown Funk Empire",              "title": "Boogie",                                                  "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "3",  "timestamp": "06:54",   "artist": "Letta Mbulu",                     "title": "Kilimanjaro",                                             "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "4",  "timestamp": "10:35",   "artist": "ROOT SOUL",                       "title": "Spirit Of Love (Ft. Vanessa Freeman & Mike Patto)",        "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "5",  "timestamp": "14:24",   "artist": "DJ Boris",                        "title": "Body Burning",                                            "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "6",  "timestamp": "17:58",   "artist": "Incognito",                       "title": "Ain't It Time (Club Surreal Mix)",                         "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "7",  "timestamp": "22:29",   "artist": "Azota",                           "title": "Soft Emotion",                                            "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "8",  "timestamp": "26:43",   "artist": "First Choice",                    "title": "Hold Your Horses",                                        "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "9",  "timestamp": "30:27",   "artist": "Unlimited Touch",                 "title": "In The Middle",                                           "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "10", "timestamp": "35:24",   "artist": "Patti Labelle",                   "title": "Music Is My Way Of Life",                                 "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "11", "timestamp": "39:55",   "artist": "Sylvester",                       "title": "Can't Stop Dancing",                                      "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "12", "timestamp": "43:55",   "artist": "Cerrone",                         "title": "Look for Love (The reflex revision)",                      "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "13", "timestamp": "48:03",   "artist": "T-Connection",                    "title": "At Midnight",                                             "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "14", "timestamp": "50:43",   "artist": "Musique",                         "title": "Keep On Jumpin'",                                          "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "15", "timestamp": "53:20",   "artist": "Pasteur Lappe",                   "title": "More Sekele Movement (Papa Ni Mama)",                      "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "16", "timestamp": "56:52",   "artist": "Dan Hartman",                     "title": "Relight My Fire (Ft. Loleatta Holoway)",                   "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "17", "timestamp": "1:01:45", "artist": "Macho",                           "title": "I'm A Man (Long Mix)",                                    "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "18", "timestamp": "1:05:19", "artist": "Patrick Hernandez",               "title": "Disco Queen",                                             "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "19", "timestamp": "1:08:44", "artist": "Destination",                     "title": "Move On Up",                                              "label": null, "date": null, "apple_music_id": null, "spotify_id": null}
+  ]
+}

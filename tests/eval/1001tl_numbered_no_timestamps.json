@@ -1,0 +1,18 @@
+{
+  "url": "https://www.youtube.com/watch?v=pbhxsI17P2M",
+  "source": "1001tracklists",
+  "raw_text": "01. Rick James - You Turn Me On\n02. Dayton - Meet The Man\n03. Tracy Weber - Sure Shot (Larry Levan Remix)\n04. Aurra - Checking You Out\n05. The Love Unlimited Orchestra - Lift Your Voice And Say...\n06. Rick James - Big Time\n07. Ramona Brooks - I Don't Want You Back\n08. The Strikers - Inch By Inch\n09. Kashif - I Just Gotta Have You\n10. Atlantis - Keep On Movin' & Groovin\n11. Freeez - Southern Freeez",
+  "tracks": [
+    {"num": "1",  "timestamp": null, "artist": "Rick James",                    "title": "You Turn Me On",                       "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "2",  "timestamp": null, "artist": "Dayton",                        "title": "Meet The Man",                         "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "3",  "timestamp": null, "artist": "Tracy Weber",                   "title": "Sure Shot (Larry Levan Remix)",         "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "4",  "timestamp": null, "artist": "Aurra",                         "title": "Checking You Out",                     "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "5",  "timestamp": null, "artist": "The Love Unlimited Orchestra",  "title": "Lift Your Voice And Say...",            "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "6",  "timestamp": null, "artist": "Rick James",                    "title": "Big Time",                             "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "7",  "timestamp": null, "artist": "Ramona Brooks",                 "title": "I Don't Want You Back",                "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "8",  "timestamp": null, "artist": "The Strikers",                  "title": "Inch By Inch",                         "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "9",  "timestamp": null, "artist": "Kashif",                        "title": "I Just Gotta Have You",                "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "10", "timestamp": null, "artist": "Atlantis",                      "title": "Keep On Movin' & Groovin",             "label": null, "date": null, "apple_music_id": null, "spotify_id": null},
+    {"num": "11", "timestamp": null, "artist": "Freeez",                        "title": "Southern Freeez",                      "label": null, "date": null, "apple_music_id": null, "spotify_id": null}
+  ]
+}
