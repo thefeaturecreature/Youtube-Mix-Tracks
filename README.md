@@ -73,7 +73,28 @@ unmix W21yvhnjrOw -o tracklist.md
 
 # Link timestamps to YouTube playback position
 unmix W21yvhnjrOw -t
+
+# Download audio and generate a CUE sheet (default: opus)
+unmix W21yvhnjrOw -c
+
+# Download as MP3 instead
+unmix W21yvhnjrOw -c --type mp3
 ```
+
+## CUE sheets
+
+`-c` downloads the audio and generates a matching CUE sheet in one step. CUE-aware players (Poweramp, FiiO Music, foobar2000, VLC) use it to present a single audio file as individually navigable tracks — showing the current track name and letting you skip between them.
+
+Files are saved to `DOWNLOAD_PATH` from your `.env` (default: `~/Downloads`). The audio and CUE share the same base filename and are placed in the same directory, which is all players require.
+
+```bash
+# .env
+DOWNLOAD_PATH=~/Downloads/S23
+```
+
+`--type` passes through to yt-dlp's `--audio-format`. The default is `opus`, which avoids transcoding since YouTube serves opus natively — no quality loss, slightly smaller files than MP3. Use `--type mp3` for players that don't support opus.
+
+YouTube throttles audio-only stream downloads, so `unmix` downloads a minimal video stream alongside the audio to bypass throttling, then discards the video. The resulting file is audio-only.
 
 ## Output
 

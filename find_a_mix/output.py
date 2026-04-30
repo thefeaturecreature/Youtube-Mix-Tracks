@@ -41,6 +41,44 @@ def _format_track(i: int, track: dict, pad: int = 2, video_url: str | None = Non
     return " ".join(parts)
 
 
+def _seconds_to_cue_index(ts: str) -> str:
+    parts = [int(p) for p in ts.split(":")]
+    if len(parts) == 2:
+        minutes, seconds = parts
+    else:
+        hours, minutes, seconds = parts
+        minutes += hours * 60
+    return f"{minutes:02d}:{seconds:02d}:00"
+
+
+_CUE_FILE_TYPE = {"opus": "OGG", "ogg": "OGG", "aac": "AAC", "m4a": "AAC", "flac": "WAVE"}
+
+
+def generate_cue(result: dict, audio_filename: str, audio_format: str = "mp3") -> str:
+    lines = []
+    video_title = result.get("video_title", "")
+    tracks = result.get("tracks") or []
+    cue_type = _CUE_FILE_TYPE.get(audio_format.lower(), "MP3")
+
+    lines.append("REM ENCODING UTF-8")
+    if video_title:
+        lines.append(f'TITLE "{video_title}"')
+    lines.append(f'FILE "{audio_filename}" {cue_type}')
+
+    for i, track in enumerate(tracks, 1):
+        title = track.get("title") or ""
+        artist = track.get("artist") or ""
+        timestamp = track.get("timestamp") or "0:00"
+        lines.append(f"  TRACK {i:02d} AUDIO")
+        if title:
+            lines.append(f'    TITLE "{title}"')
+        if artist:
+            lines.append(f'    PERFORMER "{artist}"')
+        lines.append(f"    INDEX 01 {_seconds_to_cue_index(timestamp)}")
+
+    return "\n".join(lines) + "\n"
+
+
 def format_markdown(result: dict, link_timestamps: bool = False) -> str:
     lines = []
     video_title = result.get("video_title", "")

@@ -28,6 +28,11 @@
 ## find_a_mix/output.py
 - `_format_track(i, track)` — format a single structured track dict as a markdown line
 - `format_markdown(result)` — format a pipeline result dict as a markdown string; all sources render from structured `tracks: list[dict]`
+- `_seconds_to_cue_index(ts)` — convert `MM:SS` or `H:MM:SS` timestamp to CUE index format `MM:SS:FF`
+- `generate_cue(result, audio_filename, audio_format)` — generate a CUE sheet string from a pipeline result dict; audio_format sets the FILE type line (mp3/opus/aac/flac)
+
+## find_a_mix/download.py
+- `download_audio(url, output_dir, audio_format)` — download best audio from URL via yt-dlp, convert to audio_format, return final file path
 
 ## find_a_mix/pipeline.py
 - `video_id_from_url(url)` — extract YouTube video ID from a URL
