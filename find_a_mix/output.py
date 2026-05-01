@@ -65,6 +65,13 @@ def generate_cue(result: dict, audio_filename: str, audio_format: str = "mp3") -
         lines.append(f'TITLE "{video_title}"')
     lines.append(f'FILE "{audio_filename}" {cue_type}')
 
+    # Duplicate timestamps (conflicting community IDs) — keep the last entry at each time
+    seen: dict[str, dict] = {}
+    for idx, track in enumerate(tracks):
+        ts = track.get("timestamp")
+        seen[ts if ts else f"__no_ts_{idx}__"] = track
+    tracks = list(seen.values())
+
     for i, track in enumerate(tracks, 1):
         title = track.get("title") or ""
         artist = track.get("artist") or ""
