@@ -23,9 +23,10 @@ def main():
     parser.add_argument("-c", "--cue", action="store_true", help="Download audio and generate a CUE sheet")
     parser.add_argument("--type", default="opus", metavar="FORMAT", help="Audio format for download (default: opus)")
     parser.add_argument("--cookies", metavar="FILE", help="Netscape-format cookies file for yt-dlp (bypasses --cookies-from-browser chrome)")
+    parser.add_argument("-ny", "--no-youtube", action="store_true", help="Skip YouTube description and comment checks, go straight to MixesDB and 1001Tracklists")
     args = parser.parse_args()
 
-    result = run(args.url)
+    result = run(args.url, no_youtube=args.no_youtube)
     formatted = format_markdown(result, link_timestamps=args.timestamps)
 
     if args.output:

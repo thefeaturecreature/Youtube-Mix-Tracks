@@ -25,7 +25,7 @@ def video_id_from_url(url: str) -> str:
     return m.group(1)
 
 
-def run(url: str) -> dict:
+def run(url: str, no_youtube: bool = False) -> dict:
     video_id = video_id_from_url(url)
     youtube = build("youtube", "v3", developerKey=os.environ["YOUTUBE_API_KEY"])
 
@@ -34,13 +34,14 @@ def run(url: str) -> dict:
     channel = info["channel"]
     base = {"video_title": video_title, "url": url, "source_url": None, "text": None, "tracks": None}
 
-    # Step 1: YouTube description
-    block = parse.extract_tracklist_block(info["description"])
-    if block:
-        return {**base, "source": "youtube_description", "tracks": parse_tracks(block)}
+    if not no_youtube:
+        # Step 1: YouTube description
+        block = parse.extract_tracklist_block(info["description"])
+        if block:
+            return {**base, "source": "youtube_description", "tracks": parse_tracks(block)}
 
     # Step 2: YouTube comments
-    comments = yt.fetch_top_comments(youtube, video_id)
+    comments = yt.fetch_top_comments(youtube, video_id) if not no_youtube else []
 
     # 2a: if any comment cites a 1001tracklists URL, use it directly (has full timestamps)
     for comment in comments:
