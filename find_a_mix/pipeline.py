@@ -13,6 +13,7 @@ from .infer import parse_tracks
 
 YT_ID_RE = re.compile(r"(?:v=|youtu\.be/)([A-Za-z0-9_-]{11})")
 BARE_ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
+_1001TL_URL_RE = re.compile(r"https?://(?:www\.)?1001tracklists\.com/tracklist/[^\s]+")
 
 
 def video_id_from_url(url: str) -> str:
@@ -39,7 +40,20 @@ def run(url: str) -> dict:
         return {**base, "source": "youtube_description", "tracks": parse_tracks(block)}
 
     # Step 2: YouTube comments
-    for comment in yt.fetch_top_comments(youtube, video_id):
+    comments = yt.fetch_top_comments(youtube, video_id)
+
+    # 2a: if any comment cites a 1001tracklists URL, use it directly (has full timestamps)
+    for comment in comments:
+        m = _1001TL_URL_RE.search(comment)
+        if m:
+            tl_url = m.group(0).rstrip(".,)")
+            raw_tracks = tracklists_1001.fetch_tracklist(tl_url)
+            if raw_tracks:
+                text = "\n".join(f"{t['num']}. {t['title']}  {t['time']}".strip() for t in raw_tracks)
+                return {**base, "source": "1001tracklists", "source_url": tl_url, "tracks": parse_tracks(text)}
+
+    # 2b: parse comment text as a tracklist
+    for comment in comments:
         block = parse.extract_tracklist_block(comment)
         if block:
             return {**base, "source": "youtube_comment", "tracks": parse_tracks(block)}

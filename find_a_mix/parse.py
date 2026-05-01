@@ -7,6 +7,9 @@ TRACKLIST_HEADER_RE = re.compile(r"tracklist|track\s*list|track\s*listing", re.I
 NUMBERED_LINE_RE = re.compile(r"^\s*\d+[\.\)]\s+.+", re.MULTILINE)
 # Separator lines like "---", "===", or repeated dashes/underscores
 SEPARATOR_RE = re.compile(r"^[-=_—]{3,}\s*$", re.MULTILINE)
+# Lines anchored by a leading [MM:SS] timestamp vs. a leading NN. number
+_TS_ANCHOR_RE = re.compile(r"^\s*\[\d{1,2}:\d{2}(?::\d{2})?\]", re.MULTILINE)
+_NUM_ANCHOR_RE = re.compile(r"^\s*\d+[\.\)]\s+", re.MULTILINE)
 
 
 def looks_like_tracklist(text: str) -> bool:
@@ -17,9 +20,16 @@ def looks_like_tracklist(text: str) -> bool:
     return has_timestamps or has_numbered or has_header
 
 
+def _is_mixed_anchor_format(text: str) -> bool:
+    """True if lines alternate between [MM:SS]-anchored and NN.-anchored — a partial copy-paste."""
+    return bool(_TS_ANCHOR_RE.search(text)) and bool(_NUM_ANCHOR_RE.search(text))
+
+
 def extract_tracklist_block(text: str) -> str | None:
     """Return just the tracklist portion of text, trimming surrounding boilerplate."""
     if not looks_like_tracklist(text):
+        return None
+    if _is_mixed_anchor_format(text):
         return None
 
     lines = text.splitlines()
