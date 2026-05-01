@@ -7,6 +7,7 @@ import re
 from googleapiclient.discovery import build
 
 from . import parse, mixesdb, youtube as yt
+from .parse import extract_reply_tracks
 from . import tracklists_1001
 from .infer import parse_tracks
 
@@ -41,11 +42,11 @@ def run(url: str, no_youtube: bool = False) -> dict:
             return {**base, "source": "youtube_description", "tracks": parse_tracks(block)}
 
     # Step 2: YouTube comments
-    comments = yt.fetch_top_comments(youtube, video_id) if not no_youtube else []
+    threads = yt.fetch_comment_threads(youtube, video_id) if not no_youtube else []
 
     # 2a: if any comment cites a 1001tracklists URL, use it directly (has full timestamps)
-    for comment in comments:
-        m = _1001TL_URL_RE.search(comment)
+    for thread in threads:
+        m = _1001TL_URL_RE.search(thread["text"])
         if m:
             tl_url = m.group(0).rstrip(".,)")
             raw_tracks = tracklists_1001.fetch_tracklist(tl_url)
@@ -53,11 +54,23 @@ def run(url: str, no_youtube: bool = False) -> dict:
                 text = "\n".join(f"{t['num']}. {t['title']}  {t['time']}".strip() for t in raw_tracks)
                 return {**base, "source": "1001tracklists", "source_url": tl_url, "tracks": parse_tracks(text)}
 
-    # 2b: parse comment text as a tracklist
-    for comment in comments:
-        block = parse.extract_tracklist_block(comment)
-        if block:
-            return {**base, "source": "youtube_comment", "tracks": parse_tracks(block)}
+    # 2b: parse comment text as a tracklist, merging replies when blanks are present
+    for thread in threads:
+        block = parse.extract_tracklist_block(thread["text"])
+        if not block:
+            continue
+        if parse._BLANK_MARKER_RE.search(block) and thread["reply_count"] > 0:
+            replies = yt.fetch_replies(youtube, thread["id"])
+            reply_tracks = extract_reply_tracks(replies)
+            if reply_tracks:
+                reply_addendum = "\n".join(reply_tracks)
+                block = (
+                    f"{block}\n\n"
+                    f"NOTE: The following community-identified tracks fill in unknown entries above — "
+                    f"use them to replace ??? or ID placeholders at matching timestamps:\n"
+                    f"{reply_addendum}"
+                )
+        return {**base, "source": "youtube_comment", "tracks": parse_tracks(block)}
 
     # Step 3: MixesDB
     page_url = mixesdb.search(channel, video_title)

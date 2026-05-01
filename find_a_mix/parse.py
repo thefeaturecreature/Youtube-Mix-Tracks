@@ -2,14 +2,21 @@
 
 import re
 
-TIMESTAMP_RE = re.compile(r"\b\d{1,2}:\d{2}(?::\d{2})?\b")
+TIMESTAMP_RE = re.compile(r"\b[tT]?\d{1,2}:\d{2}(?::\d{2})?\b")
 TRACKLIST_HEADER_RE = re.compile(r"tracklist|track\s*list|track\s*listing", re.IGNORECASE)
 NUMBERED_LINE_RE = re.compile(r"^\s*\d+[\.\)]\s+.+", re.MULTILINE)
 # Separator lines like "---", "===", or repeated dashes/underscores
 SEPARATOR_RE = re.compile(r"^[-=_—]{3,}\s*$", re.MULTILINE)
-# Lines anchored by a leading [MM:SS] timestamp vs. a leading NN. number
-_TS_ANCHOR_RE = re.compile(r"^\s*\[\d{1,2}:\d{2}(?::\d{2})?\]", re.MULTILINE)
+# Lines anchored by a leading [MM:SS] or [tMM:SS] timestamp vs. a leading NN. number
+_TS_ANCHOR_RE = re.compile(r"^\s*\[[tT]?\d{1,2}:\d{2}(?::\d{2})?\]", re.MULTILINE)
 _NUM_ANCHOR_RE = re.compile(r"^\s*\d+[\.\)]\s+", re.MULTILINE)
+# Blank / unknown track markers: ???, ID, or timestamp-only lines with no track info
+_BLANK_MARKER_RE = re.compile(
+    r"^\s*(?:\[[tT]?\d{1,2}:\d{2}(?::\d{2})?\]\s*)?(?:\?{2,}|\bID\b)\s*$",
+    re.MULTILINE | re.IGNORECASE,
+)
+# Reply lines that look like a track identification: starts with a timestamp then content
+_REPLY_TRACK_RE = re.compile(r"^\s*\[?[tT]?\d{1,2}:\d{2}(?::\d{2})?\]?\s*[-–]?\s*\S")
 
 
 def looks_like_tracklist(text: str) -> bool:
@@ -67,3 +74,13 @@ def extract_tracklist_block(text: str) -> str | None:
         block.pop()
 
     return "\n".join(block).strip()
+
+
+def extract_reply_tracks(replies: list[str]) -> list[str]:
+    """Pull lines from reply comments that look like track identifications (timestamp - artist/title)."""
+    tracks = []
+    for reply in replies:
+        for line in reply.splitlines():
+            if _REPLY_TRACK_RE.match(line):
+                tracks.append(line.strip())
+    return tracks
