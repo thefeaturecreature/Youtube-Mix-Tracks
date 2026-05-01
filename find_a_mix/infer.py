@@ -53,7 +53,16 @@ def parse_tracks(raw_text: str) -> list[dict]:
         content = content.split("\n", 1)[-1]
         content = content.rsplit("```", 1)[0].strip()
 
-    tracks = json.loads(content)
+    try:
+        tracks = json.loads(content)
+    except json.JSONDecodeError:
+        # Response was likely truncated mid-array; recover by trimming to the last complete entry
+        last_close = content.rfind("},")
+        if last_close == -1:
+            last_close = content.rfind("}\n")
+        if last_close == -1:
+            raise
+        tracks = json.loads(content[:last_close + 1] + "]")
 
     blank = {"num": None, "timestamp": None, "artist": None, "title": None,
              "label": None, "date": None, "apple_music_id": None, "spotify_id": None}
