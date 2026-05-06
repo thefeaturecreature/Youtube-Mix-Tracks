@@ -5,7 +5,7 @@
 - `fetch_top_comments(youtube, video_id, max_results)` — fetch top/most-relevant comments, HTML stripped
 
 ## find_a_mix/parse.py
-- `looks_like_tracklist(text)` — heuristic: returns True if text has tracklist header, 3+ timestamps, or 3+ numbered lines
+- `looks_like_tracklist(text)` — heuristic: returns True if text has tracklist header, 3+ timestamps, or 3+ numbered lines with a dash separator (filters out numbered rules/manifesto lists)
 - `extract_tracklist_block(text)` — returns stripped text if it looks like a tracklist, else None
 
 ## find_a_mix/mixesdb.py
@@ -34,6 +34,9 @@
 ## find_a_mix/download.py
 - `download_audio(url, output_dir, audio_format)` — download best audio from URL via yt-dlp, convert to audio_format, return final file path
 
+## find_a_mix/cli.py
+- `_safe_filename(title)` — sanitize a video title for use as a filename (strips OS-unsafe chars)
+
 ## find_a_mix/pipeline.py
 - `video_id_from_url(url)` — extract YouTube video ID from a URL
-- `run(url)` — run the full source cascade (YouTube description → comments → MixesDB → 1001Tracklists); all sources parsed through `parse_tracks()`, returns `{source, video_title, tracks}`
+- `run(url, no_youtube, skip_description)` — run the full source cascade (YouTube description → comments → MixesDB → 1001Tracklists); `no_youtube` skips both description and comments, `skip_description` skips only the description step

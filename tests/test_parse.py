@@ -44,6 +44,20 @@ def test_two_timestamps_not_enough():
     assert looks_like_tracklist("0:00 intro\n1:30 outro") is False
 
 
+def test_numbered_rules_not_tracklist():
+    rules = (
+        "The Librarian's Manifesto\n"
+        "1. Come for the music.\n"
+        "2. Be open to unfamiliar music and sounds.\n"
+        "3. Respect one another.\n"
+        "4. Face each other instead of the DJ.\n"
+        "5. No phones allowed on the dance floor.\n"
+        "6. Dress to express yourself.\n"
+        "7. Dance your heart out.\n"
+    )
+    assert looks_like_tracklist(rules) is False
+
+
 def test_empty_string():
     assert looks_like_tracklist("") is False
 

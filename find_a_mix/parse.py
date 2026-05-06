@@ -5,6 +5,8 @@ import re
 TIMESTAMP_RE = re.compile(r"\b[tT]?\d{1,2}:\d{2}(?::\d{2})?\b")
 TRACKLIST_HEADER_RE = re.compile(r"tracklist|track\s*list|track\s*listing", re.IGNORECASE)
 NUMBERED_LINE_RE = re.compile(r"^\s*\d+[\.\)]\s+.+", re.MULTILINE)
+# Numbered line that contains a dash separator — distinguishes "1. Artist - Title" from "1. Rule."
+_NUMBERED_TRACK_RE = re.compile(r"^\s*\d+[\.\)]\s+\S.+\s[-–—]\s+\S", re.MULTILINE)
 # Separator lines like "---", "===", or repeated dashes/underscores
 SEPARATOR_RE = re.compile(r"^[-=_—]{3,}\s*$", re.MULTILINE)
 # Lines anchored by a leading [MM:SS] or [tMM:SS] timestamp vs. a leading NN. number
@@ -21,7 +23,8 @@ _REPLY_TRACK_RE = re.compile(r"^\s*\[?[tT]?\d{1,2}:\d{2}(?::\d{2})?\]?\s*[-–]?
 
 def looks_like_tracklist(text: str) -> bool:
     has_timestamps = len(TIMESTAMP_RE.findall(text)) >= 3
-    has_numbered = len(NUMBERED_LINE_RE.findall(text)) >= 3
+    # Require a dash separator to avoid matching numbered rules/manifesto items
+    has_numbered = len(NUMBERED_LINE_RE.findall(text)) >= 3 and bool(_NUMBERED_TRACK_RE.search(text))
     # Header alone isn't sufficient — a description can mention "tracklist" without containing one
     has_header = bool(TRACKLIST_HEADER_RE.search(text)) and (has_timestamps or has_numbered)
     return has_timestamps or has_numbered or has_header

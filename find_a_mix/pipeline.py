@@ -26,7 +26,7 @@ def video_id_from_url(url: str) -> str:
     return m.group(1)
 
 
-def run(url: str, no_youtube: bool = False) -> dict:
+def run(url: str, no_youtube: bool = False, skip_description: bool = False) -> dict:
     video_id = video_id_from_url(url)
     youtube = build("youtube", "v3", developerKey=os.environ["YOUTUBE_API_KEY"])
 
@@ -35,7 +35,7 @@ def run(url: str, no_youtube: bool = False) -> dict:
     channel = info["channel"]
     base = {"video_title": video_title, "url": url, "source_url": None, "text": None, "tracks": None}
 
-    if not no_youtube:
+    if not no_youtube and not skip_description:
         # Step 1: YouTube description
         block = parse.extract_tracklist_block(info["description"])
         if block:
