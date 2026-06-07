@@ -102,7 +102,7 @@ def run_fixture(path: Path) -> tuple[int, int]:
         for field in FIELDS:
             e_val = exp.get(field)
             a_val = act.get(field)
-            if field == "num" and a_val is None:
+            if field == "num" and e_val is not None and a_val is None:
                 a_val = str(i + 1)
             ok = _match(field, e_val, a_val)
             mark = "✓" if ok else "✗"
